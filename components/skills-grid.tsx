@@ -26,6 +26,7 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([])
   const filterBarRef = useRef<HTMLDivElement>(null)
+  const mobileSearchInputRef = useRef<HTMLInputElement>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const searchTabRef = useRef<HTMLButtonElement>(null)
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null)
@@ -186,6 +187,20 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
     }
   }
 
+  const handleMobileSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nextValue = e.target.value
+    setSearchText(nextValue)
+    setConfirmedSearchText(nextValue)
+    setIsSearchActive(nextValue.trim().length > 0)
+  }
+
+  const handleMobileSearchClear = () => {
+    setSearchText("")
+    setConfirmedSearchText("")
+    setIsSearchActive(false)
+    mobileSearchInputRef.current?.focus()
+  }
+
   const handleCompositionStart = () => {
     setIsComposing(true)
   }
@@ -251,23 +266,37 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
             <path d="m21 21-4.3-4.3" />
           </svg>
           <input
+            ref={mobileSearchInputRef}
             type="text"
             value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value)
-              setConfirmedSearchText(e.target.value)
-              if (e.target.value.trim()) {
-                setIsSearchActive(true)
-              } else {
-                setIsSearchActive(false)
-              }
-            }}
+            onChange={handleMobileSearchChange}
             placeholder="搜索"
-            className="w-full h-9 pl-9 pr-3 text-sm bg-background rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none"
+            className="w-full h-9 pl-9 pr-10 text-sm bg-background rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none"
             style={{
               boxShadow: 'inset 0 0 0 1px rgba(96,165,250,0.5), inset 0 0 0 1px rgba(167,139,250,0.3)',
             }}
           />
+          {searchText.length > 0 ? (
+            <button
+              type="button"
+              onClick={handleMobileSearchClear}
+              aria-label="清除搜索内容"
+              className="absolute right-2 top-1/2 z-10 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <svg
+                className="h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          ) : null}
         </div>
       </div>
 

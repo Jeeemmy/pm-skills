@@ -12,7 +12,7 @@ const aclonica = localFont({
 
 export const metadata: Metadata = {
   title: 'PM Skills - 精选产品经理 AI Skills',
-  description: '装上 PM Skills，画原型交给 AI。为产品经理精心挑选的 AI 技能集合。',
+  description: '装上 PM Skills，做需求交给 AI。为产品经理精心挑选的 AI 技能集合。',
   generator: 'v0.app',
   icons: {
     icon: [
