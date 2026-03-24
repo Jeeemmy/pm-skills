@@ -11,10 +11,6 @@ const aiTools = [
     name: "网页转 Axure 原型",
     url: "https://axhub.im/chrome/",
   },
-  {
-    name: "网页转 Figma 设计稿",
-    url: "https://axhub.im/chrome/",
-  },
 ]
 
 export function AIToolsDropdown() {
@@ -76,7 +72,7 @@ export function AIToolsDropdown() {
         onClick={handleClick}
         className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer px-3 py-2"
       >
-        AI 原型工具
+        产品 AI 工具
       </button>
       
       {isOpen && (

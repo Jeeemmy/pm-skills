@@ -21,6 +21,21 @@ interface SkillsGridProps {
   skills: Skill[]
 }
 
+const CATEGORY_ORDER = ["市场洞察", "需求规划", "原型设计", "数据增长"] as const
+
+function parseInstallCount(installs?: string) {
+  if (!installs) return 0
+
+  const normalized = installs.trim().toUpperCase()
+  const value = Number.parseFloat(normalized.replace(/[^0-9.]/g, ""))
+
+  if (Number.isNaN(value)) return 0
+  if (normalized.endsWith("K")) return value * 1_000
+  if (normalized.endsWith("M")) return value * 1_000_000
+
+  return value
+}
+
 export function SkillsGrid({ skills }: SkillsGridProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
@@ -51,25 +66,36 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
         }
       })
     })
-    return ["所有", ...Array.from(tagSet)]
+
+    const orderedTags = CATEGORY_ORDER.filter(tag => tagSet.has(tag))
+    const remainingTags = Array.from(tagSet).filter(
+      tag => !CATEGORY_ORDER.includes(tag as (typeof CATEGORY_ORDER)[number])
+    )
+
+    return ["所有", ...orderedTags, ...remainingTags]
   }, [skills])
 
   // Filter skills based on active tag or search (use confirmed text for filtering)
   const filteredSkills = useMemo(() => {
+    let nextSkills: Skill[]
+
     if (isSearchActive && confirmedSearchText.trim()) {
       const query = confirmedSearchText.toLowerCase().trim()
-      return skills.filter(skill => 
+      nextSkills = skills.filter(skill => 
         skill.name.toLowerCase().includes(query) ||
         skill.description.toLowerCase().includes(query) ||
         skill.tags?.some(tag => tag.toLowerCase().includes(query)) ||
         skill.series?.toLowerCase().includes(query)
       )
+    } else if (isSearchActive && !confirmedSearchText.trim()) {
+      nextSkills = skills
+    } else if (activeTag === "所有") {
+      nextSkills = skills
+    } else {
+      nextSkills = skills.filter(skill => skill.tags?.includes(activeTag))
     }
-    if (isSearchActive && !confirmedSearchText.trim()) {
-      return skills
-    }
-    if (activeTag === "所有") return skills
-    return skills.filter(skill => skill.tags?.includes(activeTag))
+
+    return [...nextSkills].sort((a, b) => parseInstallCount(b.installs) - parseInstallCount(a.installs))
   }, [skills, activeTag, isSearchActive, confirmedSearchText])
 
   // Handle series click from dialog - activate search with series name
@@ -233,7 +259,7 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
             }}
             className="w-full h-9 px-3 pr-8 text-sm font-medium bg-background rounded-md appearance-none cursor-pointer text-foreground focus:outline-none"
             style={{
-              boxShadow: 'inset 0 0 0 1px rgba(96,165,250,0.5), inset 0 0 0 1px rgba(167,139,250,0.3)',
+              boxShadow: 'inset 0 0 0 1px rgba(0,143,93,0.3)',
             }}
           >
             {allTags.map((tag) => (
@@ -273,7 +299,7 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
             placeholder="搜索"
             className="w-full h-9 pl-9 pr-10 text-sm bg-background rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none"
             style={{
-              boxShadow: 'inset 0 0 0 1px rgba(96,165,250,0.5), inset 0 0 0 1px rgba(167,139,250,0.3)',
+              boxShadow: 'inset 0 0 0 1px rgba(0,143,93,0.3)',
             }}
           />
           {searchText.length > 0 ? (
@@ -315,14 +341,14 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
           <div 
             className="absolute inset-0 rounded-md dark:hidden"
             style={{
-              background: "linear-gradient(135deg, rgba(96,165,250,0.5), rgba(167,139,250,0.5))",
+              background: "linear-gradient(135deg, rgba(0,143,93,0.4), rgba(45,212,191,0.4))",
             }}
           />
           {/* Dark mode gradient border */}
           <div 
             className="absolute inset-0 rounded-md hidden dark:block"
             style={{
-              background: "linear-gradient(135deg, rgba(96,165,250,0.3), rgba(167,139,250,0.3))",
+              background: "linear-gradient(135deg, rgba(0,143,93,0.25), rgba(45,212,191,0.25))",
             }}
           />
           {/* White background inner */}

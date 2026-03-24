@@ -2,6 +2,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { SkillsGrid } from "@/components/skills-grid"
 import { AIToolsDropdown } from "@/components/ai-tools-dropdown"
 import { HeroBlobs } from "@/components/hero-blobs"
+import { AgentMarquee } from "@/components/agent-marquee"
 import { skills } from "@/data/skills"
 
 export default function PMSkillsPage() {
@@ -31,11 +32,13 @@ export default function PMSkillsPage() {
             <span className="font-brand">PM Skills</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-2 sm:mb-3">
-            精选产品经理 AI Skills
+            产品经理亲测与推荐的 AI Skills
           </p>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground/70">
-            装上 PM Skills，做需求交给 AI
+            快速落地产品 AI 工作流
           </p>
+
+          <AgentMarquee />
         </div>
       </section>
 

@@ -9,10 +9,16 @@ __v0_jsx-dev-runtime.ts
 next.user-config.*
 
 # Environment variables
+.env
 .env*.local
 
 # Common ignores
 node_modules/
 .next/
+out/
 .DS_Store
 .vercel
+*.pem
+
+# OSS 部署敏感配置（包含 AccessKey，不可提交）
+scripts/deploy-oss.config.mjs

@@ -60,10 +60,29 @@ styles/         补充样式资源
 
 ## 构建与部署
 
-生产构建命令：
+本项目通过 `next build` 静态导出到 `out/` 目录，再上传至阿里云 OSS。
+
+### 1. 配置 OSS 凭证
+
+首次使用需创建配置文件（该文件已被 `.gitignore` 排除，不会提交到版本库）：
 
 ```bash
-npm run build
+cp scripts/deploy-oss.config.example.mjs scripts/deploy-oss.config.mjs
 ```
 
-本项目基于 Next.js，可部署到 Vercel 或任意支持 Node.js 的平台。
+然后编辑 `scripts/deploy-oss.config.mjs`，填入以下信息：
+
+| 常量               | 说明                                      |
+| ------------------ | ----------------------------------------- |
+| `ACCESS_KEY_ID`    | 阿里云 AccessKey ID                       |
+| `ACCESS_KEY_SECRET`| 阿里云 AccessKey Secret                   |
+| `REGION`           | OSS 所在地域，如 `oss-cn-hangzhou`         |
+| `BUCKET`           | OSS Bucket 名称                           |
+| `OSS_PREFIX`       | 上传目标目录前缀，如 `skills/`             |
+
+### 2. 构建并发布
+
+```bash
+npm run build    # 生成静态文件到 out/
+npm run deploy   # 上传 out/ 到 OSS
+```

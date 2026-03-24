@@ -12,7 +12,7 @@ const blobTemplates = [
     top: -15,
     width: 450,
     height: 280,
-    colorClass: "bg-blue-400/[0.07] dark:bg-blue-400/[0.06]",
+    colorClass: "bg-teal-400/[0.07] dark:bg-teal-400/[0.06]",
     animationClass: "animate-blob-1",
   },
   {
@@ -20,7 +20,7 @@ const blobTemplates = [
     top: 5,
     width: 280,
     height: 420,
-    colorClass: "bg-violet-500/[0.055] dark:bg-violet-500/[0.05]",
+    colorClass: "bg-emerald-500/[0.055] dark:bg-emerald-500/[0.05]",
     animationClass: "animate-blob-2",
   },
   {
@@ -28,7 +28,7 @@ const blobTemplates = [
     top: 35,
     width: 320,
     height: 200,
-    colorClass: "bg-indigo-400/[0.06] dark:bg-indigo-400/[0.05]",
+    colorClass: "bg-green-400/[0.06] dark:bg-green-400/[0.05]",
     animationClass: "animate-blob-3",
   },
   {
@@ -36,7 +36,7 @@ const blobTemplates = [
     top: 58,
     width: 420,
     height: 260,
-    colorClass: "bg-purple-500/[0.045] dark:bg-purple-500/[0.04]",
+    colorClass: "bg-teal-500/[0.045] dark:bg-teal-500/[0.04]",
     animationClass: "animate-blob-4",
   },
   {
@@ -44,7 +44,7 @@ const blobTemplates = [
     top: 12,
     width: 300,
     height: 400,
-    colorClass: "bg-blue-500/[0.055] dark:bg-blue-500/[0.05]",
+    colorClass: "bg-emerald-400/[0.055] dark:bg-emerald-400/[0.05]",
     animationClass: "animate-blob-5",
   },
   {
@@ -52,7 +52,7 @@ const blobTemplates = [
     top: -8,
     width: 260,
     height: 360,
-    colorClass: "bg-violet-500/[0.05] dark:bg-violet-500/[0.045]",
+    colorClass: "bg-emerald-500/[0.05] dark:bg-emerald-500/[0.045]",
     animationClass: "animate-blob-2",
   },
   {
@@ -60,7 +60,7 @@ const blobTemplates = [
     top: 48,
     width: 360,
     height: 220,
-    colorClass: "bg-indigo-400/[0.05] dark:bg-indigo-400/[0.045]",
+    colorClass: "bg-green-400/[0.05] dark:bg-green-400/[0.045]",
     animationClass: "animate-blob-3",
   },
   {
@@ -68,7 +68,7 @@ const blobTemplates = [
     top: 20,
     width: 300,
     height: 190,
-    colorClass: "bg-blue-400/[0.05] dark:bg-blue-400/[0.045]",
+    colorClass: "bg-teal-400/[0.05] dark:bg-teal-400/[0.045]",
     animationClass: "animate-blob-1",
   },
   {
@@ -76,7 +76,7 @@ const blobTemplates = [
     top: 42,
     width: 380,
     height: 240,
-    colorClass: "bg-purple-500/[0.04] dark:bg-purple-500/[0.035]",
+    colorClass: "bg-teal-500/[0.04] dark:bg-teal-500/[0.035]",
     animationClass: "animate-blob-4",
   },
   {
@@ -84,7 +84,7 @@ const blobTemplates = [
     top: -10,
     width: 340,
     height: 230,
-    colorClass: "bg-blue-500/[0.045] dark:bg-blue-500/[0.04]",
+    colorClass: "bg-emerald-400/[0.045] dark:bg-emerald-400/[0.04]",
     animationClass: "animate-blob-5",
   },
   {
@@ -92,7 +92,7 @@ const blobTemplates = [
     top: 60,
     width: 300,
     height: 320,
-    colorClass: "bg-violet-500/[0.04] dark:bg-violet-500/[0.035]",
+    colorClass: "bg-emerald-500/[0.04] dark:bg-emerald-500/[0.035]",
     animationClass: "animate-blob-2",
   },
   {
@@ -100,7 +100,7 @@ const blobTemplates = [
     top: 8,
     width: 280,
     height: 180,
-    colorClass: "bg-indigo-400/[0.045] dark:bg-indigo-400/[0.04]",
+    colorClass: "bg-green-400/[0.045] dark:bg-green-400/[0.04]",
     animationClass: "animate-blob-3",
   },
 ] as const

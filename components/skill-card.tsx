@@ -64,9 +64,11 @@ export const SkillCard = forwardRef<HTMLDivElement, SkillCardProps>(
                     {tag}
                   </span>
                 ))}
-                <span className="hidden sm:inline text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded whitespace-nowrap">
-                  {tags[1]}
-                </span>
+                {tags[1] && (
+                  <span className="hidden sm:inline text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded whitespace-nowrap">
+                    {tags[1]}
+                  </span>
+                )}
               </div>
             )}
           </div>
